@@ -1,0 +1,20 @@
+FROM node:12.4.0-alpine as debug
+
+WORKDIR /work1/
+
+COPY ./src/package.json /work1/package.json
+RUN npm install
+RUN npm install -g nodemon
+
+COPY ./src/ /work1/src/
+
+ENTRYPOINT [ "nodemon","--inspect=0.0.0.0","./src/server.js" ]
+
+FROM node:12.4.0-alpine as prod
+
+WORKDIR /work1/
+COPY ./src/package.json /work1/package.json
+RUN npm install
+COPY ./src/ /work1/
+
+CMD node .
