@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-task
+  labels:
+    app: task-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-app
+  template:
+    metadata:
+      labels:
+        app: task-app 
+    spec:
+      containers:
+      - name: task-app
+        image: docker.io/temzzycode/node-task:1.0.0 
+        ports:
+        - containerPort: 4002
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "20m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"

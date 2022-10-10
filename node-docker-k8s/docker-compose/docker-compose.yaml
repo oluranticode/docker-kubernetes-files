@@ -1,0 +1,10 @@
+version: '3'
+services:
+  hello:
+    image: temzzycode/node-hello:1.0.0
+    ports:
+      - 4000:4000
+  task:
+    image: temzzycode/node-task:1.0.0
+    ports:
+      - 4002:4002

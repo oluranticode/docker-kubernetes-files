@@ -1,0 +1,15 @@
+FROM node:18-alpine3.15
+
+RUN mkdir -p /home/node/hello-app/node_modules && chown -R node:node /home/node/hello-app
+
+WORKDIR /home/node/hello-app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY --chown=node:node . .
+
+EXPOSE 4000
+
+CMD ["node", "server.js"]
